@@ -1,1 +1,1 @@
-# random-name-generator
+# random-name-picker
