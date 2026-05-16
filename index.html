@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<!-- saved from url=(0050)file:///C:/Users/jaco/Downloads/Naam_Kieser_2.html -->
 <html lang="af"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Naam Kieser</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com/">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-  <link href="./Naam Kieser_files/css2" rel="stylesheet">
+  <title>Random Name Picker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -55,7 +54,6 @@
       flex-direction: column;
     }
 
-    /* ── Top bar ───────────────────────────── */
     .top-bar {
       display: flex;
       justify-content: space-between;
@@ -64,7 +62,7 @@
     }
 
     .date-label {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--gray-400);
       text-transform: uppercase;
@@ -114,7 +112,6 @@
       50% { transform: scale(1.06); }
     }
 
-    /* ── Section labels ───────────────────────── */
     .section-label {
       font-size: 11px;
       font-weight: 700;
@@ -130,7 +127,6 @@
       margin: 24px 0;
     }
 
-    /* ── Display area ─────────────────────────── */
     .display {
       display: flex;
       flex-direction: column;
@@ -170,7 +166,6 @@
       letter-spacing: 0.1em;
     }
 
-    /* ── Pick button ──────────────────────────── */
     .pick-row {
       display: flex;
       justify-content: center;
@@ -202,7 +197,6 @@
       background: var(--gray-800);
     }
 
-    /* ── Input row ────────────────────────────── */
     .input-row {
       display: flex;
       gap: 8px;
@@ -241,7 +235,6 @@
 
     .add-btn:hover { background: var(--blue-dark); }
 
-    /* ── Name list ────────────────────────────── */
     .list-header {
       display: flex;
       justify-content: space-between;
@@ -372,7 +365,6 @@
       font-style: italic;
     }
 
-    /* ── No-repeat panel ──────────────────────── */
     .panel {
       background: var(--gray-50);
       border: 2px solid var(--gray-200);
@@ -415,7 +407,6 @@
       color: var(--purple);
     }
 
-    /* ── Toggle switch ────────────────────────── */
     .toggle {
       position: relative;
       width: 44px;
@@ -442,7 +433,6 @@
 
     .toggle.on .toggle-thumb { left: 23px; }
 
-    /* ── Version tag ──────────────────────────── */
     #version-tag {
       position: fixed;
       bottom: 8px;
@@ -452,7 +442,6 @@
       pointer-events: none;
     }
 
-    /* ── Fullscreen overlay ───────────────────── */
     #fullscreen-overlay {
       position: fixed;
       inset: 0;
@@ -586,9 +575,8 @@
 </head>
 <body>
   <div id="app">
-    <!-- ── Top bar ───────────────────────── -->
     <div class="top-bar">
-      <div class="date-label" id="date-label">Woensdag 13 Mei</div>
+      <div class="date-label" id="date-label"></div>
       <div class="top-actions">
         <button class="icon-btn icon-btn-reset" id="reset-all-btn" title="Begin oor (verwyder alles)" aria-label="Begin oor">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -607,26 +595,23 @@
       </div>
     </div>
 
-    <!-- ── Display ───────────────────────── -->
     <div class="display">
-      <div class="display-name" id="display-name">Cerise Botha</div>
-      <div class="display-sub" id="display-sub">8 name oor</div>
+      <div class="display-name idle" id="display-name">Voeg name by</div>
+      <div class="display-sub" id="display-sub"></div>
     </div>
 
     <div class="pick-row">
-      <button class="pick-btn" id="pick-btn" disabled="">Kies Naam</button>
+      <button class="pick-btn" id="pick-btn">Kies Naam</button>
     </div>
 
     <hr>
 
-    <!-- ── Add names ─────────────────────── -->
     <div class="section-label">Voeg naam by</div>
     <div class="input-row">
-      <input type="text" class="name-input" id="name-input" placeholder="Tik &#39;n naam (of plak veelvuldige name)" autocomplete="off">
+      <input type="text" class="name-input" id="name-input" placeholder="Tik 'n naam (of plak veelvuldige name)" autocomplete="off">
       <button class="add-btn" id="add-btn">Voeg by</button>
     </div>
 
-    <!-- ── No-repeat panel ───────────────── -->
     <div class="panel" id="norepeat-panel">
       <div class="panel-row">
         <div>
@@ -641,11 +626,10 @@
 
     <hr>
 
-    <!-- ── Name list ─────────────────────── -->
     <div class="list-header">
       <span class="count-label" id="count-label">0 name</span>
       <div class="list-actions">
-        <button class="text-action-btn reset-action" id="reset-btn" title="Herstel getrekte name" style="display: none;">
+        <button class="text-action-btn reset-action" id="reset-btn" title="Herstel getrekte name" style="display:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 11a8 8 0 1 0 -2.83 6.36"></path>
             <polyline points="20 4 20 11 13 11"></polyline>
@@ -674,13 +658,12 @@
         </button>
       </div>
     </div>
-    <div class="name-list" id="name-list"><div class="empty-state">Nog geen name nie</div></div>
+    <div class="name-list" id="name-list"></div>
   </div>
 
-  <!-- ── Fullscreen overlay ──────────────── -->
   <div id="fullscreen-overlay" class="">
     <div class="fs-controls hidden" id="fs-controls">
-      <div class="fs-date" id="fs-date">Woensdag 13 Mei</div>
+      <div class="fs-date" id="fs-date"></div>
       <button class="fs-exit-btn" id="fs-exit-btn" title="Sluit volskerm" aria-label="Sluit volskerm">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -690,17 +673,16 @@
     </div>
     <div class="fs-center">
       <div class="fs-name-wrap">
-        <div class="fs-name" id="fs-name" style="--fs-name-size: 160px;">Cerise Botha</div>
+        <div class="fs-name idle" id="fs-name">Voeg name by</div>
       </div>
-      <div class="fs-sub" id="fs-sub">8 name oor</div>
-      <button class="fs-pick-btn hidden" id="fs-pick-btn" disabled="">Kies Naam</button>
+      <div class="fs-sub" id="fs-sub"></div>
+      <button class="fs-pick-btn hidden" id="fs-pick-btn">Kies Naam</button>
     </div>
   </div>
 
-  <div id="version-tag">Weergawe 1.6</div>
+  <div id="version-tag">Weergawe 1.7</div>
 
   <script>
-    // ── DOM refs ─────────────────────────────
     const $dateLabel = document.getElementById('date-label');
     const $displayName = document.getElementById('display-name');
     const $displaySub = document.getElementById('display-sub');
@@ -725,12 +707,12 @@
     const $fsExitBtn = document.getElementById('fs-exit-btn');
 
     // ── State ────────────────────────────────
-    let names = [];           // all names ever added
-    let drawn = new Set();    // indices of names already picked (when noRepeat on)
+    let names = [];
+    let drawn = new Set();
     let noRepeat = false;
     let spinning = false;
     let spinTimer = null;
-    const STORAGE_KEY = 'ahmp-naam-kieser';
+    const STORAGE_KEY = 'ahmp-naam-kieser-v2';
 
     // ── Storage ──────────────────────────────
     function saveState() {
@@ -740,7 +722,7 @@
           drawn: [...drawn],
           noRepeat
         }));
-      } catch (e) { /* ignore */ }
+      } catch (e) {}
     }
 
     function loadState() {
@@ -751,7 +733,7 @@
         names = Array.isArray(data.names) ? data.names : [];
         drawn = new Set(Array.isArray(data.drawn) ? data.drawn : []);
         noRepeat = !!data.noRepeat;
-      } catch (e) { /* ignore */ }
+      } catch (e) {}
     }
 
     // ── Date label ───────────────────────────
@@ -822,18 +804,10 @@
       $resetBtn.style.display = (noRepeat && drawn.size > 0) ? 'inline-flex' : 'none';
     }
 
-    // Keep the "X name oor" text in sync whenever the list or drawn set changes.
-    // We only update this when it's already showing a "remaining" message — we
-    // don't want to overwrite a fresh "Gekies" subtitle from the latest pick.
     function updateSubText() {
       if (spinning) return;
       const current = $displaySub.textContent || '';
-      if (!noRepeat) {
-        // In non-noRepeat mode there's no count to keep current; leave alone.
-        return;
-      }
-      // Only refresh if we're currently showing a remaining-count message,
-      // or showing "Almal gekies" / empty when the situation has changed.
+      if (!noRepeat) return;
       const showsCount = /oor$/.test(current) || current === 'Almal gekies' || current === '';
       if (!showsCount) return;
       const remaining = names.length - drawn.size;
@@ -847,7 +821,6 @@
 
     // ── Add / remove names ───────────────────
     function addNames(input) {
-      // Split on newlines, tabs, carriage returns, or commas — handles Excel paste
       const parts = input.split(/[\r\n\t,;]+/).map(s => s.trim()).filter(Boolean);
       if (parts.length === 0) return;
       parts.forEach(p => names.push(p));
@@ -857,7 +830,6 @@
 
     function removeName(idx) {
       names.splice(idx, 1);
-      // Rebuild drawn set with shifted indices
       const newDrawn = new Set();
       drawn.forEach(i => {
         if (i < idx) newDrawn.add(i);
@@ -877,8 +849,6 @@
       if (pool.length === 0) return;
 
       spinning = true;
-      // Fit fullscreen font to the longest name in the active pool, so the
-      // text doesn't visibly bounce between sizes as the spinner cycles.
       fitFsFont(pool.map(p => p.n));
       $displayName.classList.remove('idle');
       $displayName.classList.add('spinning');
@@ -941,7 +911,6 @@
     // ── Shuffle list ─────────────────────────
     function shuffleList() {
       if (names.length < 2) return;
-      // Fisher-Yates, preserving drawn status by name (not index)
       const drawnNames = new Set([...drawn].map(i => names[i]));
       for (let i = names.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -963,7 +932,6 @@
     }
 
     // ── Clear / reset ────────────────────────
-    // Two-step clear: first click arms, second click within 3s clears.
     let clearArmed = false;
     let clearArmedTimer = null;
     const $clearLabel = $clearBtn.querySelector('.clear-label');
@@ -985,7 +953,6 @@
         clearArmedTimer = setTimeout(disarmClear, 3000);
         return;
       }
-      // Confirmed
       disarmClear();
       names = [];
       drawn = new Set();
@@ -1005,15 +972,11 @@
       renderList();
     }
 
-    // ── Reset everything (top-right) ─────────
-    // Single click wipes everything — no confirmation.
     function disarmResetAll() {
-      // Kept as a no-op for compatibility with other handlers that call it.
       $resetAllBtn.classList.remove('armed');
     }
 
     function resetAll() {
-      // Full wipe
       names = [];
       drawn = new Set();
       noRepeat = false;
@@ -1046,12 +1009,9 @@
       }
     });
 
-    // Intercept paste so Excel rows (which use \r\n or \t separators) split properly.
-    // A single-line <input> normally strips newlines on paste, so we grab clipboard text directly.
     $nameInput.addEventListener('paste', (e) => {
       const text = (e.clipboardData || window.clipboardData)?.getData('text');
       if (!text) return;
-      // If it contains any multi-name separator, handle it ourselves
       if (/[\r\n\t,;]/.test(text)) {
         e.preventDefault();
         addNames(text);
@@ -1070,23 +1030,16 @@
     // ── Fullscreen ───────────────────────────
     let fsHideTimer = null;
 
-    // Fullscreen font auto-fit:
-    // The fullscreen display can show very long names; we want them all to
-    // render at the same size on a single line so the layout doesn't bounce.
-    // Find a font-size at which the *longest* name in the pool still fits.
     function fitFsFont(poolNames) {
       if (!poolNames || poolNames.length === 0) return;
-      // Use the wrap's actual rendered width as our budget
       const wrap = document.querySelector('.fs-name-wrap');
       if (!wrap) return;
       const wrapWidth = wrap.clientWidth || window.innerWidth * 0.95;
       const wrapHeight = wrap.clientHeight || 200;
-      // Find longest name (by character count is a decent proxy)
       let longest = poolNames[0];
       for (const n of poolNames) {
         if (n.length > longest.length) longest = n;
       }
-      // Measure with a temp element
       const probe = document.createElement('span');
       probe.style.cssText = `
         position: absolute; visibility: hidden; white-space: nowrap;
@@ -1095,12 +1048,10 @@
       `;
       probe.textContent = longest;
       document.body.appendChild(probe);
-      // Start at the natural max size, shrink until it fits
       const maxSize = Math.min(200, window.innerWidth * 0.16, wrapHeight);
       let size = maxSize;
       const minSize = 32;
       probe.style.fontSize = size + 'px';
-      // Available width with a small horizontal safety margin
       const budget = wrapWidth * 0.95;
       while (size > minSize && probe.offsetWidth > budget) {
         size -= 4;
@@ -1116,23 +1067,19 @@
       clearTimeout(fsHideTimer);
       fsHideTimer = setTimeout(() => {
         $fsControls.classList.add('hidden');
-        // Pick button stays visible — only the top-bar controls fade out.
       }, 3000);
     }
 
     function openFullscreen() {
-      // Mirror current state into the FS view
       $fsName.textContent = $displayName.textContent;
       $fsName.classList.toggle('idle', $displayName.classList.contains('idle'));
       $fsName.classList.toggle('spinning', $displayName.classList.contains('spinning'));
       $fsSub.textContent = $displaySub.textContent;
       $fsOverlay.classList.add('active');
       showFsControls();
-      // Try native fullscreen if available (silent fail OK)
       if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen().catch(() => {});
       }
-      // Defer font fitting one frame so the overlay has rendered
       requestAnimationFrame(() => fitFsFont(names));
     }
 
@@ -1146,7 +1093,6 @@
 
     $fullscreenBtn.addEventListener('click', openFullscreen);
     $fsExitBtn.addEventListener('click', closeFullscreen);
-
     $fsOverlay.addEventListener('mousemove', showFsControls);
     $fsOverlay.addEventListener('touchstart', showFsControls);
     $fsOverlay.addEventListener('click', showFsControls);
@@ -1164,12 +1110,11 @@
     });
 
     // ── Init ─────────────────────────────────
+    // Always start fresh — clear any previously saved state
+    localStorage.removeItem(STORAGE_KEY);
     setDateLabel();
-    loadState();
     $norepeatToggle.classList.toggle('on', noRepeat);
     $norepeatPanel.classList.toggle('enabled', noRepeat);
     renderList();
   </script>
-
-
 </body></html>
